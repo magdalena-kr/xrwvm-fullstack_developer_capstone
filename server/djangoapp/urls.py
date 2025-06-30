@@ -4,11 +4,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 from .views import logout_request
+from .views import registration
 
 app_name = 'djangoapp'
 urlpatterns = [
     # # path for registration
-    path(route='register', view=views.register, name='register'),
+    path(route='register', view=views.registration, name='signup'),
     # path for login
     path(route='login', view=views.login_user, name='login'),
    
