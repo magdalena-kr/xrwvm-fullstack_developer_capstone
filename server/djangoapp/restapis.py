@@ -7,8 +7,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Environment variables with fallback defaults
-backend_url = os.getenv('backend_url', default="https://magdalenakre-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai")
+backend_url = os.getenv(
+    'backend_url', 
+    default="https://magdalenakre-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai")
 sentiment_analyzer_url = os.getenv('sentiment_analyzer_url', default="http://localhost:5050/")
+
 
 # Function to perform GET requests
 def get_request(endpoint, **kwargs):
@@ -26,6 +29,7 @@ def get_request(endpoint, **kwargs):
         print(f"Network exception occurred: {e}")
         return {}
 
+
 # Function to analyze review sentiment using external API
 def analyze_review_sentiments(text):
     request_url = sentiment_analyzer_url + "analyze/" + text
@@ -37,6 +41,7 @@ def analyze_review_sentiments(text):
     except requests.RequestException as e:
         print(f"Sentiment analysis failed: {e}")
         return {"sentiment": "unknown"}
+
 
 # Function to submit a review via POST
 def post_review(data_dict):
