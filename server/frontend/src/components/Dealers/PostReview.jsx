@@ -22,6 +22,11 @@ const PostReview = () => {
   let carmodels_url = root_url+`djangoapp/get_cars`;
 
   const postreview = async ()=>{
+
+    console.log("postreview called");
+  console.log("Dealer ID:", id);
+  console.log({ review, model, year, date });
+  
     let name = sessionStorage.getItem("firstname")+" "+sessionStorage.getItem("lastname");
     //If the first and second name are stores as null, use the username
     if(name.includes("null")) {
@@ -69,9 +74,9 @@ const PostReview = () => {
     const retobj = await res.json();
     
     if(retobj.status === 200) {
-      let dealerobjs = Array.from(retobj.dealer)
-      if(dealerobjs.length > 0)
-        setDealer(dealerobjs[0])
+    //   let dealerobjs = Array.from(retobj.dealer)
+    //   if(dealerobjs.length > 0)
+        setDealer(retobj.dealer)
     }
   }
 
