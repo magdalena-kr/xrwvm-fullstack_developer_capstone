@@ -78,9 +78,10 @@ def registration(request):
     else:
         return JsonResponse(
             {
-            "userName": username,
-            "error": "Already Registered"
-            })
+                "userName": username,
+                "error": "Already Registered"
+            }
+        )
 
 
 def get_dealerships(request, state="All"):
@@ -123,12 +124,15 @@ def get_dealer_details(request, dealer_id):
 
 @csrf_exempt
 def add_review(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        try:
-            post_review(data)
-            return JsonResponse({"status": 200})
-        except Exception as e:
-            return JsonResponse({"status": 401, "message": f"Error in posting review: {str(e)}"})
-    else:
+    if request.method != "POST":
         return JsonResponse({"status": 405, "message": "Method not allowed"})
+
+    try:
+        data = json.loads(request.body)
+        post_review(data)
+        return JsonResponse({"status": 200})
+    except Exception as e:
+        return JsonResponse({
+            "status": 401,
+            "message": f"Error in posting review: {e}"
+        })
