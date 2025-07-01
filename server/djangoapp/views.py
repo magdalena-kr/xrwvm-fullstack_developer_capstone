@@ -78,9 +78,10 @@ def registration(request):
     else:
         return JsonResponse(
             {
-            "userName": username, 
+            "userName": username,
             "error": "Already Registered"
             })
+
 
 def get_dealerships(request, state="All"):
     if state == "All":
