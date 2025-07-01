@@ -73,7 +73,7 @@ def registration(request):
         # Check if user already exists
         User.objects.get(username=username)
         username_exist = True
-    except:
+    except Exception:
         # If not, simply log this is a new user
         logger.debug("{} is new user".format(username))
 
@@ -114,7 +114,10 @@ def get_dealer_reviews(request, dealer_id):
         reviews = get_request(endpoint)
         print(reviews)
         if reviews is None:
-            return JsonResponse({"status": 404, "message": "No reviews at all"})
+            return JsonResponse(
+                {"status": 404, 
+                "message": "No reviews at all"}
+                )
         else:
             for review_detail in reviews:
                 response = analyze_review_sentiments(review_detail["review"])
