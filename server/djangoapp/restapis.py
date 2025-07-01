@@ -15,7 +15,7 @@ backend_url = os.getenv(
     )
 )
 sentiment_analyzer_url = os.getenv(
-    'sentiment_analyzer_url', 
+    'sentiment_analyzer_url',
     default="http://localhost:5050/"
     )
 
