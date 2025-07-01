@@ -1,14 +1,9 @@
 import json
 import logging
-from datetime import datetime
-
-from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import redirect
-
 from .models import CarMake, CarModel
 from .restapis import get_request, analyze_review_sentiments, post_review
 from .populate import initiate
@@ -82,7 +77,6 @@ def registration(request):
         return JsonResponse({"userName": username, "status": "Authenticated"})
     else:
         return JsonResponse({"userName": username, "error": "Already Registered"})
-
 
 def get_dealerships(request, state="All"):
     if state == "All":
