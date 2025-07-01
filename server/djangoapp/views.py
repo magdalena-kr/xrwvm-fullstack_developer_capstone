@@ -26,9 +26,11 @@ def get_cars(request):
     cars = []
     for car_model in car_models:
         cars.append(
-            {"CarModel": car_model.name,
-            "CarMake": car_model.car_make.name}
-            )
+        {
+        "CarModel": car_model.name,
+        "CarMake": car_model.car_make.name
+        }
+)
     return JsonResponse({"CarModels": cars})
 
 
@@ -115,7 +117,7 @@ def get_dealer_reviews(request, dealer_id):
         print(reviews)
         if reviews is None:
             return JsonResponse(
-                {"status": 404, 
+                {"status": 404,
                 "message": "No reviews at all"}
                 )
         else:
